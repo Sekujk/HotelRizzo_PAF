@@ -1,0 +1,25 @@
+
+# Carpetas de compilación
+/build/
+/dist/
+
+/nbproject/private/
+/nbbuild/
+/nbdist/
+/nbactions.xml
+/.netbeans/
+
+/*.class
+*.log
+*.jar
+*.war
+*.ear
+
+# Archivos temporales
+*.tmp
+*.bak
+*.swp
+*~
+
+.DS_Store
+Thumbs.db

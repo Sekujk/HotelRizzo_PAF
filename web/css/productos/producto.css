@@ -1,0 +1,135 @@
+/* Base */
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #eef1f5;
+    margin: 0;
+    padding: 30px;
+    color: #2c3e50;
+}
+
+/* Contenedor general */
+.container {
+    max-width: 1100px;
+    margin: 0 auto;
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 30px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Título */
+.container h2 {
+    margin-top: 0;
+    font-size: 28px;
+    color: #34495e;
+}
+
+/* Botón volver */
+.btn-volver {
+    display: inline-block;
+    margin-bottom: 20px;
+    font-size: 15px;
+    text-decoration: none;
+    color: #3498db;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+.btn-volver:hover {
+    color: #21618c;
+}
+
+/* Resumen */
+.resumen p {
+    font-size: 16px;
+    margin: 10px 0;
+    color: #2c3e50;
+}
+
+/* Acciones: Buscar y Agregar */
+.acciones {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 25px 0;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.btn-agregar {
+    background-color: #2ecc71;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-weight: bold;
+    border: none;
+    text-decoration: none;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.btn-agregar:hover {
+    background-color: #27ae60;
+    transform: scale(1.02);
+}
+
+.buscador {
+    padding: 10px 14px;
+    font-size: 15px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    width: 250px;
+    transition: border-color 0.3s ease;
+}
+
+.buscador:focus {
+    outline: none;
+    border-color: #2980b9;
+}
+
+/* Tabla de productos */
+.tabla-productos {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+.tabla-productos thead {
+    background-color: #2980b9;
+    color: #ffffff;
+}
+
+.tabla-productos th, .tabla-productos td {
+    padding: 14px 16px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+    font-size: 15px;
+}
+
+.tabla-productos tbody tr {
+    transition: background-color 0.2s ease;
+    cursor: pointer;
+}
+
+.tabla-productos tbody tr:hover {
+    background-color: #f1f1f1;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .acciones {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .buscador {
+        width: 100%;
+    }
+
+    .btn-agregar {
+        width: 100%;
+    }
+}

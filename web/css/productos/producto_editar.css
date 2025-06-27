@@ -1,0 +1,113 @@
+/* css/productos/producto_editar.css */
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #f4f6f9;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
+}
+
+.form-container {
+    background-color: #ffffff;
+    border-radius: 12px;
+    padding: 40px;
+    margin: 50px auto;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
+    width: 95%;
+    max-width: 600px;
+    transition: all 0.3s ease;
+}
+
+h2 {
+    text-align: center;
+    color: #2c3e50;
+    font-weight: 600;
+    margin-bottom: 30px;
+    font-size: 26px;
+    border-bottom: 2px solid #ddd;
+    padding-bottom: 10px;
+}
+
+form label {
+    display: block;
+    margin-top: 20px;
+    font-size: 15px;
+    color: #34495e;
+}
+
+form input[type="text"],
+form input[type="number"],
+form textarea {
+    width: 100%;
+    padding: 10px 12px;
+    margin-top: 6px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 14px;
+    box-sizing: border-box;
+    transition: border-color 0.3s;
+}
+
+form input:focus,
+form textarea:focus {
+    border-color: #2980b9;
+    outline: none;
+}
+
+form textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+.btn-guardar,
+.btn-volver {
+    display: inline-block;
+    padding: 12px 20px;
+    margin-top: 25px;
+    font-size: 14px;
+    text-decoration: none;
+    border-radius: 6px;
+    transition: background-color 0.25s ease;
+    cursor: pointer;
+    border: none;
+}
+
+.btn-guardar {
+    background-color: #27ae60;
+    color: white;
+}
+
+.btn-guardar:hover {
+    background-color: #1e8449;
+}
+
+.btn-volver {
+    background-color: #7f8c8d;
+    color: white;
+    margin-left: 10px;
+}
+
+.btn-volver:hover {
+    background-color: #626e70;
+}
+
+/* Responsive */
+@media screen and (max-width: 600px) {
+    .form-container {
+        padding: 25px;
+    }
+
+    h2 {
+        font-size: 22px;
+    }
+
+    .btn-guardar,
+    .btn-volver {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+}
