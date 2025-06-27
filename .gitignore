@@ -1,25 +1,43 @@
+# ========================
+# NetBeans
+# ========================
+nbproject/private/
+nbbuild/
+nbdist/
+nbactions.xml
+.nb-gradle/
+.netbeans/
+.netbeans-hidden/
 
-# Carpetas de compilación
-/build/
-/dist/
+# ========================
+# Build & Dist
+# ========================
+build/
+dist/
 
-/nbproject/private/
-/nbbuild/
-/nbdist/
-/nbactions.xml
-/.netbeans/
-
-/*.class
+# ========================
+# Java
+# ========================
+*.class
 *.log
+
+# ========================
+# Empaquetado
+# Ignora .jar, .war y .ear excepto los que estén en lib/
 *.jar
 *.war
 *.ear
+!lib/*.jar
 
+# ========================
 # Archivos temporales
 *.tmp
 *.bak
 *.swp
 *~
+*.old
 
+# ========================
+# Archivos ocultos del sistema
 .DS_Store
 Thumbs.db
