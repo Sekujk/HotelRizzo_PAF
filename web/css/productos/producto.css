@@ -1,135 +1,315 @@
-/* Base */
-* {
-    box-sizing: border-box;
-}
-
-body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #eef1f5;
-    margin: 0;
-    padding: 30px;
-    color: #2c3e50;
-}
-
-/* Contenedor general */
-.container {
-    max-width: 1100px;
-    margin: 0 auto;
-    background: #ffffff;
+/* ==================== ESTRUCTURA PRINCIPAL ==================== */
+.table-container {
+    background: white;
     border-radius: 12px;
-    padding: 30px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+    margin-top: 1.5rem;
+    transition: all 0.3s ease;
 }
 
-/* Título */
-.container h2 {
-    margin-top: 0;
-    font-size: 28px;
-    color: #34495e;
+.table-container:hover {
+    box-shadow: 0 6px 25px rgba(0, 0, 0, 0.12);
 }
 
-/* Botón volver */
-.btn-volver {
-    display: inline-block;
-    margin-bottom: 20px;
-    font-size: 15px;
-    text-decoration: none;
-    color: #3498db;
-    font-weight: bold;
-    transition: color 0.3s ease;
-}
-
-.btn-volver:hover {
-    color: #21618c;
-}
-
-/* Resumen */
-.resumen p {
-    font-size: 16px;
-    margin: 10px 0;
-    color: #2c3e50;
-}
-
-/* Acciones: Buscar y Agregar */
-.acciones {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin: 25px 0;
-    flex-wrap: wrap;
-    gap: 10px;
-}
-
-.btn-agregar {
-    background-color: #2ecc71;
-    color: white;
-    padding: 10px 20px;
-    border-radius: 8px;
-    font-weight: bold;
-    border: none;
-    text-decoration: none;
-    transition: background-color 0.3s ease, transform 0.2s ease;
-}
-
-.btn-agregar:hover {
-    background-color: #27ae60;
-    transform: scale(1.02);
-}
-
-.buscador {
-    padding: 10px 14px;
-    font-size: 15px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    width: 250px;
-    transition: border-color 0.3s ease;
-}
-
-.buscador:focus {
-    outline: none;
-    border-color: #2980b9;
-}
-
-/* Tabla de productos */
-.tabla-productos {
+/* ==================== ESTILOS DE LA TABLA ==================== */
+#productosTable {
     width: 100%;
     border-collapse: collapse;
-    margin-top: 10px;
+    font-size: 0.92rem;
 }
 
-.tabla-productos thead {
-    background-color: #2980b9;
-    color: #ffffff;
+#productosTable thead {
+    background: linear-gradient(to right, #1e3c72, #2a5298);
 }
 
-.tabla-productos th, .tabla-productos td {
-    padding: 14px 16px;
+#productosTable th {
+    padding: 1.2rem 1rem;
     text-align: left;
-    border-bottom: 1px solid #ddd;
-    font-size: 15px;
+    font-weight: 600;
+    color: white;
+    position: relative;
 }
 
-.tabla-productos tbody tr {
+#productosTable th:not(:last-child)::after {
+    content: "";
+    position: absolute;
+    right: 0;
+    top: 25%;
+    height: 50%;
+    width: 1px;
+    background-color: rgba(255, 255, 255, 0.3);
+}
+
+#productosTable td {
+    padding: 1.1rem 1rem;
+    border-bottom: 1px solid #f0f0f0;
+    vertical-align: middle;
     transition: background-color 0.2s ease;
+}
+
+#productosTable tr:last-child td {
+    border-bottom: none;
+}
+
+#productosTable tbody tr:hover td {
+    background-color: #f8fafd;
+}
+
+/* ==================== BADGES DE ESTADO MEJORADOS ==================== */
+.status-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.45rem 0.9rem;
+    border-radius: 50px;
+    font-size: 0.82rem;
+    font-weight: 600;
+    min-width: 90px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+}
+
+.status-badge.activo {
+    background-color: #e6f7eb;
+    color: #28a745;
+    border: 1px solid #c3e6cb;
+}
+
+.status-badge.inactivo {
+    background-color: #fdf2f2;
+    color: #dc3545;
+    border: 1px solid #f5c6cb;
+}
+
+.status-badge.bajo-stock {
+    background-color: #fff3cd;
+    color: #856404;
+    border: 1px solid #ffeeba;
+}
+
+.status-badge:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
+}
+
+/* ==================== BOTONES DE ACCIÓN ==================== */
+.actions-cell {
+    width: 200px;
+    min-width: 200px;
+}
+
+.action-buttons {
+    display: flex;
+    gap: 0.6rem;
+    flex-wrap: wrap;
+}
+
+.btn-action {
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    font-size: 0.95rem;
+    border: none;
     cursor: pointer;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    position: relative;
+    overflow: hidden;
 }
 
-.tabla-productos tbody tr:hover {
-    background-color: #f1f1f1;
+.btn-action::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 5px;
+    height: 5px;
+    background: rgba(255, 255, 255, 0.5);
+    opacity: 0;
+    border-radius: 100%;
+    transform: scale(1, 1) translate(-50%, -50%);
+    transform-origin: 50% 50%;
 }
 
-/* Responsive */
+.btn-action:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+}
+
+.btn-action:active::after {
+    animation: ripple 0.6s ease-out;
+}
+
+@keyframes ripple {
+    0% {
+        transform: scale(0, 0);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(20, 20);
+        opacity: 0;
+    }
+}
+
+.btn-action.view {
+    background: linear-gradient(135deg, #17a2b8 0%, #138da3 100%);
+}
+
+.btn-action.edit {
+    background: linear-gradient(135deg, #ffc107 0%, #e6a800 100%);
+}
+
+.btn-action.deactivate {
+    background: linear-gradient(135deg, #dc3545 0%, #c82333 100%);
+}
+
+.btn-action.activate {
+    background: linear-gradient(135deg, #28a745 0%, #218838 100%);
+}
+
+/* ==================== ESTILOS PARA STOCK ==================== */
+#productosTable td:nth-child(4),
+#productosTable td:nth-child(5) {
+    font-family: 'Roboto Mono', monospace;
+    font-weight: 600;
+    color: #2a5298;
+    letter-spacing: -0.5px;
+}
+
+.stock-critico {
+    color: #dc3545;
+    font-weight: 700;
+}
+
+/* ==================== ESTADO VACÍO ==================== */
+.no-data td {
+    padding: 4rem 1rem;
+    text-align: center;
+}
+
+.empty-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.2rem;
+    color: #555;
+}
+
+.empty-state i {
+    font-size: 3rem;
+    color: #2a5298;
+    opacity: 0.6;
+    transition: all 0.3s ease;
+}
+
+.empty-state:hover i {
+    transform: scale(1.1);
+    opacity: 0.8;
+}
+
+.empty-state p {
+    font-size: 1.05rem;
+    font-weight: 500;
+    color: #666;
+}
+
+/* ==================== BÚSQUEDA MEJORADA ==================== */
+.search-box {
+    position: relative;
+    width: 300px;
+    transition: all 0.3s ease;
+}
+
+.search-box i {
+    position: absolute;
+    left: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #6c757d;
+    z-index: 2;
+}
+
+.search-box input {
+    width: 100%;
+    padding: 0.7rem 1rem 0.7rem 2.5rem;
+    border: 1px solid #dee2e6;
+    border-radius: 8px;
+    font-size: 0.92rem;
+    transition: all 0.3s ease;
+    background-color: #f8f9fa;
+}
+
+.search-box input:focus {
+    outline: none;
+    border-color: #1e3c72;
+    background-color: white;
+    box-shadow: 0 0 0 3px rgba(30, 60, 114, 0.15);
+}
+
+.search-box:hover input {
+    background-color: white;
+    border-color: #adb5bd;
+}
+
+/* ==================== RESPONSIVE ==================== */
+@media (max-width: 992px) {
+    #productosTable td:nth-child(5),
+    #productosTable th:nth-child(5) {
+        display: none;
+    }
+    
+    .actions-cell {
+        width: 180px;
+        min-width: 180px;
+    }
+}
+
 @media (max-width: 768px) {
-    .acciones {
-        flex-direction: column;
-        align-items: flex-start;
+    .table-container {
+        border-radius: 10px;
     }
-
-    .buscador {
-        width: 100%;
+    
+    #productosTable {
+        display: block;
+        overflow-x: auto;
     }
-
-    .btn-agregar {
+    
+    .action-buttons {
+        justify-content: flex-start;
+    }
+    
+    .search-box {
         width: 100%;
+        margin-top: 1rem;
+    }
+    
+    .actions-bar {
+        flex-wrap: wrap;
+    }
+}
+
+@media (max-width: 576px) {
+    #productosTable td:nth-child(1),
+    #productosTable th:nth-child(1) {
+        display: none;
+    }
+    
+    .status-badge {
+        min-width: 80px;
+        padding: 0.35rem 0.7rem;
+    }
+    
+    .btn-action {
+        width: 32px;
+        height: 32px;
+    }
+    
+    .empty-state i {
+        font-size: 2.5rem;
     }
 }

@@ -64,5 +64,14 @@ public class PersonaDAO {
     }
 }
 
+    public boolean cambiarEstadoActivo(int idPersona, boolean estado) throws SQLException {
+    String sql = "UPDATE Personas SET activo = ? WHERE id_persona = ?";
+    try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+        stmt.setBoolean(1, estado);
+        stmt.setInt(2, idPersona);
+        return stmt.executeUpdate() > 0;
+    }
+}
+
     
 }

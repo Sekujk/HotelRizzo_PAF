@@ -1,0 +1,255 @@
+/* ===== Variables CSS ===== */
+:root {
+  --primary: #2a5298;
+  --primary-light: #3a6bc7;
+  --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  --secondary: #667eea;
+  --success: #28a745;
+  --danger: #dc3545;
+  --warning: #ffc107;
+  --info: #17a2b8;
+  --light: #f8f9fa;
+  --dark: #343a40;
+  --gray: #6c757d;
+  --light-gray: #e9ecef;
+  
+  --border-radius: 8px;
+  --box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+  --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+/* ===== Estructura del Formulario ===== */
+.form-container {
+  background: white;
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+  padding: 2.5rem;
+  max-width: 800px;
+  margin: 0 auto;
+  animation: fadeIn 0.5s ease-out;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.form-header {
+  margin-bottom: 2rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid var(--light-gray);
+  position: relative;
+}
+
+.form-header::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  width: 100px;
+  height: 3px;
+  background: var(--primary-gradient);
+  border-radius: 3px;
+}
+
+.form-header h1 {
+  font-size: 1.8rem;
+  color: var(--primary);
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+}
+
+.form-header i {
+  font-size: 1.8rem;
+  background: var(--primary-gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.form-subtitle {
+  color: var(--gray);
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+/* ===== Estilos del Formulario ===== */
+.cliente-form {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+}
+
+.form-group {
+  margin-bottom: 1.2rem;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+  color: var(--dark);
+  font-size: 0.95rem;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  padding: 0.8rem 1rem;
+  border: 1px solid var(--light-gray);
+  border-radius: var(--border-radius);
+  font-size: 1rem;
+  transition: var(--transition);
+  background-color: white;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: var(--secondary);
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.2);
+}
+
+.form-group textarea {
+  min-height: 100px;
+  resize: vertical;
+}
+
+/* Estilo para campos requeridos */
+.form-group input:required,
+.form-group select:required {
+  border-left: 3px solid var(--secondary);
+  padding-left: 0.8rem;
+}
+
+/* ===== Acciones del Formulario ===== */
+.form-actions {
+  grid-column: 1 / -1;
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+  margin-top: 1.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--light-gray);
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.8rem 1.5rem;
+  border-radius: var(--border-radius);
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition);
+  border: none;
+  font-size: 0.95rem;
+}
+
+.btn-primary {
+  background: var(--primary-gradient);
+  color: white;
+}
+
+.btn-primary:hover {
+  background: linear-gradient(135deg, #768df1 0%, #8765b8 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(42, 82, 152, 0.3);
+}
+
+.btn-secondary {
+  background: white;
+  color: var(--gray);
+  border: 1px solid var(--light-gray);
+}
+
+.btn-secondary:hover {
+  background: var(--light);
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  color: var(--dark);
+}
+
+/* ===== Estilos Específicos ===== */
+/* Para el campo de empresa (solo visible cuando es corporativo) */
+#tipo_cliente:not([value="Corporativo"]) ~ .form-group #empresa {
+  display: none;
+}
+
+/* Validación de campos */
+input:invalid, select:invalid {
+  border-color: #ff6b6b;
+}
+
+input:valid, select:valid {
+  border-color: #5cb85c;
+}
+
+/* ===== Responsive Design ===== */
+@media (max-width: 768px) {
+  .form-container {
+    padding: 1.8rem;
+  }
+  
+  .cliente-form {
+    grid-template-columns: 1fr;
+  }
+  
+  .form-actions {
+    flex-direction: column;
+  }
+  
+  .btn {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .form-container {
+    padding: 1.5rem;
+    border-radius: 6px;
+  }
+  
+  .form-header h1 {
+    font-size: 1.5rem;
+  }
+  
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    padding: 0.7rem 0.9rem;
+  }
+}
+
+/* ===== Efectos Especiales ===== */
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  transform: translateY(-1px);
+}
+
+.btn i {
+  transition: var(--transition);
+}
+
+.btn:hover i {
+  transform: scale(1.1);
+}
+
+/* Animación para campos con error */
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  20%, 60% { transform: translateX(-5px); }
+  40%, 80% { transform: translateX(5px); }
+}
+
+input:invalid:focus {
+  animation: shake 0.5s ease-in-out;
+}

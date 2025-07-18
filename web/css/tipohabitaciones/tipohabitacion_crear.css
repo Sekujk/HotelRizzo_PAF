@@ -1,0 +1,144 @@
+/* Estilos para el formulario de creación de tipos de habitación */
+
+.create-form-container {
+    max-width: 800px;
+    margin: 2rem auto 0;
+    padding: 0 1rem;
+}
+
+.create-form {
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+    padding: 2rem;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.create-form:hover {
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.12);
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-label {
+    display: block;
+    font-weight: 600;
+    color: #5a6a85;
+    margin-bottom: 0.5rem;
+    font-size: 0.95rem;
+}
+
+.form-label i {
+    margin-right: 0.6rem;
+    color: #6c7a91;
+    width: 18px;
+    text-align: center;
+}
+
+.form-input, .form-textarea {
+    width: 100%;
+    padding: 0.8rem 1rem;
+    border: 1px solid #d1d9e6;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+    background-color: #f8fafc;
+}
+
+.form-input:focus, .form-textarea:focus {
+    outline: none;
+    border-color: #2a5298;
+    box-shadow: 0 0 0 3px rgba(42, 82, 152, 0.1);
+    background-color: #ffffff;
+}
+
+.form-textarea {
+    min-height: 120px;
+    resize: vertical;
+}
+
+.form-columns {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.input-with-icon {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.input-icon {
+    position: absolute;
+    left: 1rem;
+    color: #6c7a91;
+    font-weight: 500;
+}
+
+.input-with-icon .form-input {
+    padding-left: 2.5rem;
+}
+
+.form-actions {
+    display: flex;
+    gap: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid #eaeef5;
+    margin-top: 1.5rem;
+}
+
+.alert {
+    padding: 1rem;
+    border-radius: 8px;
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+}
+
+.alert-danger {
+    background-color: rgba(220, 53, 69, 0.1);
+    border: 1px solid rgba(220, 53, 69, 0.2);
+    color: #dc3545;
+}
+
+.alert i {
+    margin-right: 0.5rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .create-form-container {
+        padding: 0 0.5rem;
+    }
+    
+    .create-form {
+        padding: 1.5rem;
+    }
+    
+    .form-actions {
+        flex-direction: column;
+    }
+    
+    .form-actions .btn {
+        width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .form-columns {
+        grid-template-columns: 1fr;
+    }
+    
+    .form-label {
+        font-size: 0.9rem;
+    }
+    
+    .form-input, .form-textarea {
+        padding: 0.7rem 0.9rem;
+        font-size: 0.9rem;
+    }
+}

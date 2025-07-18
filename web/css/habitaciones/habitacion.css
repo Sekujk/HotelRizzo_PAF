@@ -1,0 +1,317 @@
+/* ==================== ESTRUCTURA PRINCIPAL ==================== */
+.table-container {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+    margin-top: 1.5rem;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.table-container:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+}
+
+/* ==================== ESTILOS DE TABLA ==================== */
+#habitacionesTable {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.93rem;
+}
+
+#habitacionesTable thead {
+    background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+}
+
+#habitacionesTable th {
+    padding: 1.2rem 1rem;
+    text-align: left;
+    color: white;
+    font-weight: 600;
+    position: relative;
+}
+
+#habitacionesTable th:not(:last-child)::after {
+    content: "";
+    position: absolute;
+    right: 0;
+    top: 25%;
+    height: 50%;
+    width: 1px;
+    background-color: rgba(255, 255, 255, 0.3);
+}
+
+#habitacionesTable td {
+    padding: 1.1rem 1rem;
+    border-bottom: 1px solid #f0f2f5;
+    vertical-align: middle;
+    transition: background-color 0.2s ease;
+}
+
+#habitacionesTable tr:last-child td {
+    border-bottom: none;
+}
+
+#habitacionesTable tbody tr:hover td {
+    background-color: #f8fafd;
+}
+
+/* ==================== BADGES DE ESTADO ==================== */
+.status-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5rem 1rem;
+    border-radius: 50px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    min-width: 110px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+    text-transform: capitalize;
+}
+
+.status-badge.disponible {
+    background-color: #e6f7ed;
+    color: #28a745;
+    border: 1px solid #c3e6cb;
+}
+
+.status-badge.ocupado {
+    background-color: #fdf2f2;
+    color: #dc3545;
+    border: 1px solid #f5c6cb;
+}
+
+.status-badge.mantenimiento {
+    background-color: #fff8e6;
+    color: #e6a800;
+    border: 1px solid #ffeeba;
+}
+
+.status-badge.limpieza {
+    background-color: #e6f2ff;
+    color: #0062cc;
+    border: 1px solid #b8daff;
+}
+
+.status-badge:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* ==================== BOTONES DE ACCIÓN ==================== */
+.actions-cell {
+    width: 220px;
+    min-width: 220px;
+}
+
+.action-buttons {
+    display: flex;
+    gap: 0.7rem;
+    flex-wrap: wrap;
+}
+
+.btn-action {
+    width: 38px;
+    height: 38px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    font-size: 0.95rem;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-action::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 5px;
+    height: 5px;
+    background: rgba(255, 255, 255, 0.5);
+    opacity: 0;
+    border-radius: 100%;
+    transform: scale(1, 1) translate(-50%, -50%);
+    transform-origin: 50% 50%;
+}
+
+.btn-action:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.btn-action:active::after {
+    animation: ripple 0.6s ease-out;
+}
+
+@keyframes ripple {
+    0% {
+        transform: scale(0, 0);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(20, 20);
+        opacity: 0;
+    }
+}
+
+.btn-action.view {
+    background: linear-gradient(135deg, #17a2b8 0%, #138496 100%);
+}
+
+.btn-action.edit {
+    background: linear-gradient(135deg, #ffc107 0%, #e0a800 100%);
+}
+
+.btn-action.maintenance {
+    background: linear-gradient(135deg, #fd7e14 0%, #e36209 100%);
+}
+
+.btn-action.available {
+    background: linear-gradient(135deg, #28a745 0%, #218838 100%);
+}
+
+/* ==================== FILTROS ==================== */
+.filter-section {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+.filter-select {
+    padding: 0.75rem 1rem;
+    border: 1px solid #dee2e6;
+    border-radius: 8px;
+    background-color: white;
+    font-size: 0.92rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    min-width: 180px;
+}
+
+.filter-select:focus {
+    outline: none;
+    border-color: #1e3c72;
+    box-shadow: 0 0 0 3px rgba(30, 60, 114, 0.15);
+}
+
+/* ==================== ACCIONES ADMIN ==================== */
+.admin-actions {
+    display: flex;
+    gap: 1rem;
+    margin: 1.5rem 0;
+}
+
+/* ==================== ESTADO VACÍO ==================== */
+.no-data td {
+    padding: 4rem 1rem;
+    text-align: center;
+}
+
+.empty-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.2rem;
+    color: #555;
+}
+
+.empty-state i {
+    font-size: 3rem;
+    color: #2a5298;
+    opacity: 0.6;
+    transition: all 0.3s ease;
+}
+
+.empty-state:hover i {
+    transform: scale(1.1);
+    opacity: 0.8;
+}
+
+.empty-state p {
+    font-size: 1.05rem;
+    font-weight: 500;
+    color: #666;
+}
+
+/* ==================== RESPONSIVE ==================== */
+@media (max-width: 1200px) {
+    .filter-section {
+        flex-wrap: wrap;
+    }
+}
+
+@media (max-width: 992px) {
+    #habitacionesTable td:nth-child(3),
+    #habitacionesTable th:nth-child(3) {
+        display: none;
+    }
+    
+    .actions-cell {
+        width: 180px;
+        min-width: 180px;
+    }
+}
+
+@media (max-width: 768px) {
+    .table-container {
+        border-radius: 10px;
+        overflow-x: auto;
+    }
+    
+    #habitacionesTable {
+        min-width: 600px;
+    }
+    
+    .filter-section {
+        width: 100%;
+    }
+    
+    .filter-select {
+        flex: 1;
+        min-width: auto;
+    }
+    
+    .actions-bar {
+        flex-wrap: wrap;
+        gap: 1rem;
+    }
+    
+    .left-actions {
+        width: 100%;
+    }
+}
+
+@media (max-width: 576px) {
+    #habitacionesTable td:nth-child(1),
+    #habitacionesTable th:nth-child(1) {
+        display: none;
+    }
+    
+    .status-badge {
+        min-width: 90px;
+        padding: 0.4rem 0.8rem;
+    }
+    
+    .btn-action {
+        width: 34px;
+        height: 34px;
+    }
+    
+    .admin-actions {
+        flex-direction: column;
+    }
+    
+    .empty-state i {
+        font-size: 2.5rem;
+    }
+}

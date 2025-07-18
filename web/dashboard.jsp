@@ -1,15 +1,20 @@
+<%@page import="java.math.BigDecimal"%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page session="true" %>
 <%
     String usuario = (String) session.getAttribute("usuarioLogueado");
-    if (usuario == null) {
+    String rolUsuario = (String) session.getAttribute("rol");
+
+    if (usuario == null || rolUsuario == null) {
         response.sendRedirect("login.jsp");
         return;
     }
+
     Long empleadosActivos = (Long) request.getAttribute("empleadosActivos");
     if (empleadosActivos == null) {
         empleadosActivos = 0L;
     }
+
     Integer stockBajo = (Integer) request.getAttribute("stockBajo");
     if (stockBajo == null) {
         stockBajo = 0;
@@ -20,213 +25,176 @@
         serviciosActivos = 0L;
     }
 
+    Integer reservasTotales = (Integer) request.getAttribute("reservasTotales");
+    if (reservasTotales == null) {
+        reservasTotales = 0;
+    }
+
 
 %>
-
 
 <!DOCTYPE html>
 <html lang="es">
     <head>
         <meta charset="UTF-8">
         <title>Panel de Administración - Hotel Rizzo</title>
-        <link rel="stylesheet" href="css/dashboard.css">
+        <link rel="stylesheet" href="css/utils/base.css">
+        <link rel="stylesheet" href="css/auth/dashboard.css">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     </head>
     <body>
+
         <header class="navbar">
-            <div class="nav-container">
-                <div class="logo-section">
-                    <i class="fas fa-hotel"></i>
-                    <span class="logo-text">Hotel Rizzo</span>
-                </div>
-                <div class="user-section">
-                    <div class="user-info">
-                        <i class="fas fa-user-circle"></i>
-                        <span class="welcome">Bienvenido, <strong><%= usuario%></strong></span>
+            <div class="logo-section">
+                <i class="fas fa-hotel"></i>
+                <span class="logo-text">Hotel Rizzo</span>
+            </div>
+            <div class="user-section">
+                <div class="user-info">
+                    <i class="fas fa-user-circle"></i>
+                    <div class="user-details">
+                        <span class="user-name"><%= usuario%></span>
+                        <span class="user-role"><%= rolUsuario%></span>
                     </div>
-                    <a href="login.jsp" class="btn-logout">
-                        <i class="fas fa-sign-out-alt"></i>
-                        Cerrar sesión
-                    </a>
                 </div>
+                <form action="logout" method="post" class="logout-form">
+                    <button type="submit" class="btn-logout">
+                        <i class="fas fa-sign-out-alt"></i>
+                    </button>
+                </form>
             </div>
         </header>
 
-        <main class="dashboard-container">
-            <section class="welcome-section">
-                <div class="welcome-content">
-                    <h1>Panel de Administración</h1>
-                    <p>Gestiona todo el funcionamiento del hotel desde un solo lugar</p>
-                    <div class="stats-quick">
-                        <div class="stat-item">
+        <div class="app-container">
+            <aside class="sidebar">
+                <nav class="nav-menu">
+                    <div class="nav-section">
+                        <h3>Gestión Principal</h3>
+                        <ul>
+                            <li><a href="reservas" class="nav-link">
+                                    <i class="fas fa-calendar-alt"></i>
+                                    <span>Reservas</span>
+                                </a></li>
+                            <li><a href="clientes" class="nav-link">
+                                    <i class="fas fa-id-card"></i>
+                                    <span>Clientes</span>
+                                </a></li>
+                            <li><a href="habitaciones" class="nav-link">
+                                    <i class="fas fa-bed"></i>
+                                    <span>Habitaciones</span>
+                                </a></li>
+                        </ul>
+                    </div>
+
+                    <div class="nav-section">
+                        <h3>Servicios</h3>
+                        <ul>
+                            <li><a href="servicio" class="nav-link">
+                                    <i class="fas fa-concierge-bell"></i>
+                                    <span>Servicios</span>
+                                </a></li>
+                            <li><a href="producto" class="nav-link">
+                                    <i class="fas fa-shopping-cart"></i>
+                                    <span>Productos</span>
+                                </a></li>
+                        </ul>
+                    </div>
+
+                    <% if ("Administrador".equals(rolUsuario) || "Gerente".equals(rolUsuario)) { %>
+                    <div class="nav-section">
+                        <h3>Administración</h3>
+                        <ul>
+                            <li><a href="empleado" class="nav-link">
+                                    <i class="fas fa-users"></i>
+                                    <span>Empleados</span>
+                                </a></li>
+                        </ul>
+                    </div>
+                    <% }%>
+                </nav>
+            </aside>
+
+            <main class="main-content">
+                <div class="dashboard-header">
+                    <h1><i class="fas fa-tachometer-alt"></i> Panel de Control</h1>
+                    <p class="dashboard-subtitle">Resumen del estado actual del hotel</p>
+                </div>
+
+                <div class="stats-grid">
+                    <div class="stat-card primary">
+                        <div class="stat-icon">
                             <i class="fas fa-calendar-check"></i>
-                            <span>Reservas Hoy: <strong>12</strong></span>
                         </div>
-                        <div class="stat-item">
-                            <i class="fas fa-bed"></i>
-                            <span>Ocupación: <strong>85%</strong></span>
+                        <div class="stat-content">
+                            <h3><%= reservasTotales%></h3>
+                            <p>Total de Reservas</p>
+
                         </div>
-                        <div class="stat-item">
-                            <i class="fas fa-dollar-sign"></i>
-                            <span>Ingresos: <strong>$2,450</strong></span>
+                    </div>
+
+                    <div class="stat-card info">
+                        <div class="stat-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3><%= empleadosActivos%></h3>
+                            <p>Empleados Activos</p>
+                        </div>
+                    </div>
+
+                    <div class="stat-card info">
+                        <div class="stat-icon">
+                            <i class="fas fa-concierge-bell"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3><%= serviciosActivos%></h3>
+                            <p>Servicios Activos</p>
+                        </div>
+                    </div>
+
+                    <div class="stat-card <%= stockBajo > 0 ? "danger" : "success"%>">
+                        <div class="stat-icon">
+                            <i class="fas fa-boxes"></i>
+                        </div>
+                        <div class="stat-content">
+                            <% if (stockBajo > 0) {%>
+                            <h3><%= stockBajo%></h3>
+                            <p>Productos con Stock Bajo</p>
+                            <% } else { %>
+                            <h3>OK</h3>
+                            <p>Stock Suficiente</p>
+                            <% }%>
                         </div>
                     </div>
                 </div>
-            </section>
 
-            <section class="modules-section">
-                <h2>Módulos de Gestión</h2>
-                <div class="grid-modules">
-                    <a href="reservas.jsp" class="card reservas">
-                        <div class="card-icon">
-                            <i class="fas fa-calendar-alt"></i>
-                        </div>
-                        <div class="card-content">
-                            <h3>Reservas</h3>
-                            <p>Ver y administrar todas las reservas del hotel</p>
-                            <span class="card-badge">24 nuevas</span>
-                        </div>
-                        <div class="card-arrow">
-                            <i class="fas fa-arrow-right"></i>
-                        </div>
+                <div class="quick-actions">
+                    <h2>Acciones Rápidas</h2>
+                    <div class="action-buttons">
+                        <a href="reserva_buscar_cliente" class="action-btn primary">
+                            <i class="fas fa-plus"></i>
+                            Nueva Reserva
+                        </a>
+                    </div>
+                    <% if ("Administrador".equals(rolUsuario) || "Gerente".equals(rolUsuario)) { %>
+                    <a href="producto_crear" class="action-btn success">
+                        <i class="fas fa-box-open"></i>
+                        Añadir Producto
                     </a>
-
-                    <a href="habitaciones.jsp" class="card habitaciones">
-                        <div class="card-icon">
-                            <i class="fas fa-bed"></i>
-                        </div>
-                        <div class="card-content">
-                            <h3>Habitaciones</h3>
-                            <p>Control de disponibilidad y tipos de habitación</p>
-                            <span class="card-badge disponible">15 disponibles</span>
-                        </div>
-                        <div class="card-arrow">
-                            <i class="fas fa-arrow-right"></i>
-                        </div>
+                    <a href="servicio_crear" class="action-btn info">
+                        <i class="fas fa-hand-holding-heart"></i>
+                        Añadir Servicio
                     </a>
-
-                    <a href="empleado" class="card empleados">
-                        <div class="card-icon">
-                            <i class="fas fa-users"></i>
-                        </div>
-                        <div class="card-content">
-                            <h3>Empleados</h3>
-                            <p>Registrar y gestionar información de empleados</p>
-                            <span class="card-badge"><%= empleadosActivos%> activos</span>
-                        </div>
-                        <div class="card-arrow">
-                            <i class="fas fa-arrow-right"></i>
-                        </div>
-                    </a>
-
-                    <a href="servicio" class="card servicios">
-                        <div class="card-icon">
-                            <i class="fas fa-concierge-bell"></i>
-                        </div>
-                        <div class="card-content">
-                            <h3>Servicios</h3>
-                            <p>Gestionar servicios adicionales y precios</p>
-                            <span class="card-badge"><%= serviciosActivos%> activos</span>
-                        </div>
-                        <div class="card-arrow">
-                            <i class="fas fa-arrow-right"></i>
-                        </div>
-                    </a>
-                    <a href="producto" class="card productos">
-                        <div class="card-icon">
-                            <i class="fas fa-shopping-cart"></i>
-                        </div>
-                        <div class="card-content">
-                            <h3>Productos</h3>
-                            <p>Inventario del minibar y productos del hotel</p>
-                            <% if (stockBajo > 0) {%>
-                            <span class="card-badge warning"><%= stockBajo%> con stock bajo</span>
-                            <% } else { %>
-                            <span class="card-badge success">Stock suficiente</span>
-                            <% }%>
-                        </div>
-                        <div class="card-arrow">
-                            <i class="fas fa-arrow-right"></i>
-                        </div>
-                    </a>
-
-                    <a href="reportes.jsp" class="card reportes">
-                        <div class="card-icon">
-                            <i class="fas fa-chart-line"></i>
-                        </div>
-                        <div class="card-content">
-                            <h3>Reportes</h3>
-                            <p>Resumen de ingresos y análisis de actividad</p>
-                            <span class="card-badge success">Actualizado</span>
-                        </div>
-                        <div class="card-arrow">
-                            <i class="fas fa-arrow-right"></i>
-                        </div>
-                    </a>
+                    <% }%>
                 </div>
-            </section>
 
-            <section class="quick-actions">
-                <h2>Acciones Rápidas</h2>
-                <div class="quick-actions-grid">
-                    <button class="quick-btn">
-                        <i class="fas fa-plus"></i>
-                        Nueva Reserva
-                    </button>
-                    <button class="quick-btn">
-                        <i class="fas fa-key"></i>
-                        Check-in Rápido
-                    </button>
-                    <button class="quick-btn">
-                        <i class="fas fa-door-open"></i>
-                        Check-out
-                    </button>
-                    <button class="quick-btn">
-                        <i class="fas fa-print"></i>
-                        Imprimir Reporte
-                    </button>
-                </div>
-            </section>
-        </main>
+            </main>
+        </div>
 
         <footer class="footer">
-            <div class="footer-content">
-                <div class="footer-left">
-                    <p>&copy; 2025 Hotel Rizzo - Sistema de Gestión Hotelera</p>
-                </div>
-                <div class="footer-right">
-                    <span>Versión 2.1.0</span>
-                    <span>|</span>
-                    <a href="#ayuda">Ayuda</a>
-                    <span>|</span>
-                    <a href="#soporte">Soporte</a>
-                </div>
-            </div>
+            <p>&copy; 2025 Hotel Rizzo - Sistema de Gestión Hotelera</p>
         </footer>
 
-        <script>
-            // Añadir interactividad básica
-            document.querySelectorAll('.card').forEach(card => {
-                card.addEventListener('mouseenter', function () {
-                    this.style.transform = 'translateY(-8px)';
-                });
-
-                card.addEventListener('mouseleave', function () {
-                    this.style.transform = 'translateY(0)';
-                });
-            });
-
-            // Animación para las estadísticas
-            document.addEventListener('DOMContentLoaded', function () {
-                const stats = document.querySelectorAll('.stat-item');
-                stats.forEach((stat, index) => {
-                    setTimeout(() => {
-                        stat.style.opacity = '1';
-                        stat.style.transform = 'translateY(0)';
-                    }, index * 200);
-                });
-            });
-        </script>
     </body>
 </html>

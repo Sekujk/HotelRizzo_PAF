@@ -1,4 +1,4 @@
-package Controller;
+package Controller.servicios;
 
 import DAO.ServicioDAO;
 import Utils.Conexion;

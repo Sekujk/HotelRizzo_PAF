@@ -1,0 +1,166 @@
+/* Estilos consistentes con producto_detalle.css */
+.detail-container {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    padding: 2rem;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.detail-header {
+    margin-bottom: 2rem;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 1rem;
+}
+
+.detail-header h1 {
+    font-size: 1.8rem;
+    color: #2a5298;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    margin-bottom: 0.5rem;
+}
+
+.detail-header i {
+    color: #4CAF50;
+}
+
+.detail-subtitle {
+    color: #666;
+    font-size: 0.95rem;
+}
+
+.detail-card {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.detail-section {
+    border-bottom: 1px solid #f0f0f0;
+    padding-bottom: 1.5rem;
+}
+
+.detail-section:last-child {
+    border-bottom: none;
+}
+
+.detail-section h3 {
+    font-size: 1.2rem;
+    color: #444;
+    margin-bottom: 1.2rem;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+}
+
+.detail-section h3 i {
+    color: #2a5298;
+    font-size: 1rem;
+}
+
+.detail-row {
+    display: flex;
+    margin-bottom: 1rem;
+    align-items: flex-start;
+}
+
+.detail-label {
+    font-weight: 500;
+    color: #666;
+    width: 150px;
+    flex-shrink: 0;
+}
+
+.detail-value {
+    flex: 1;
+    color: #333;
+}
+
+/* Estilos específicos para estados de habitación */
+.status-badge {
+    display: inline-block;
+    padding: 0.3rem 0.8rem;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 500;
+}
+
+.status-badge.disponible {
+    background-color: #e6f7e6;
+    color: #28a745;
+}
+
+.status-badge.ocupada {
+    background-color: #fde8e8;
+    color: #dc3545;
+}
+
+.status-badge.mantenimiento {
+    background-color: #fff3cd;
+    color: #856404;
+}
+
+.status-badge.limpieza {
+    background-color: #e2e3ff;
+    color: #3849a2;
+}
+
+.status-badge.bloqueada {
+    background-color: #e2e3e5;
+    color: #383d41;
+}
+
+.text-success {
+    color: #28a745;
+}
+
+.text-danger {
+    color: #dc3545;
+}
+
+.observations {
+    background-color: #f8f9fa;
+    border-left: 4px solid #2a5298;
+    padding: 0.8rem;
+    border-radius: 0 4px 4px 0;
+    display: inline-block;
+}
+
+.detail-actions {
+    display: flex;
+    justify-content: flex-start;
+    gap: 1rem;
+    margin-top: 1.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid #eee;
+    flex-wrap: wrap;
+}
+
+.inline-form {
+    display: inline;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .detail-row {
+        flex-direction: column;
+        gap: 0.3rem;
+    }
+    
+    .detail-label {
+        width: 100%;
+    }
+    
+    .detail-actions {
+        flex-direction: column;
+    }
+    
+    .btn {
+        width: 100%;
+        justify-content: center;
+    }
+}

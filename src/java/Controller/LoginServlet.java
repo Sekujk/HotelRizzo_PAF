@@ -33,7 +33,7 @@ public class LoginServlet extends HttpServlet {
             }
 
             String sql = """
-                SELECT id_usuario, password_hash, activo, bloqueado, intentos_fallidos
+                SELECT id_usuario, password_hash, activo, bloqueado, intentos_fallidos, id_empleado
                 FROM Usuarios
                 WHERE username = ?
             """;
@@ -48,6 +48,7 @@ public class LoginServlet extends HttpServlet {
                 boolean bloqueado = rs.getBoolean("bloqueado");
                 int intentosFallidos = rs.getInt("intentos_fallidos");
                 int idUsuario = rs.getInt("id_usuario");
+                int idEmpleado = rs.getInt("id_empleado");
 
                 if (!activo || bloqueado) {
                     System.out.println("⚠️ Cuenta inactiva o bloqueada.");
@@ -65,16 +66,38 @@ public class LoginServlet extends HttpServlet {
                         resetStmt.executeUpdate();
                     }
 
-                    // Guardar sesión con el nombre correcto
-                    HttpSession session = request.getSession();
-                    session.setAttribute("usuarioLogueado", usuario); // 👈 Cambiado aquí
+                    // Obtener el rol
+                    String rolSql = """
+                        SELECT r.nombre_rol
+                        FROM Empleados e
+                        JOIN Roles r ON e.id_rol = r.id_rol
+                        WHERE e.id_empleado = ?
+                    """;
 
+                    String rol = "Empleado"; // Valor por defecto
+
+                    try (PreparedStatement rolStmt = conn.prepareStatement(rolSql)) {
+                        rolStmt.setInt(1, idEmpleado);
+                        ResultSet rolRs = rolStmt.executeQuery();
+                        if (rolRs.next()) {
+                            rol = rolRs.getString("nombre_rol");
+                        }
+                    }
+
+                    // Guardar en sesión
+                    HttpSession session = request.getSession();
+                    session.setAttribute("usuarioLogueado", usuario);
+                    session.setAttribute("rol", rol);
+                    session.setAttribute("idUsuario", idUsuario);
+                    session.setAttribute("idEmpleado", idEmpleado);
+
+                    System.out.println("👤 Sesión iniciada como: " + usuario + " (rol: " + rol + ")");
                     response.sendRedirect("dashboard");
+
                 } else {
                     intentosFallidos++;
                     System.out.println("❌ Contraseña incorrecta. Intentos: " + intentosFallidos);
 
-                    // Actualizar intentos y bloquear si se excede
                     String updateSql = "UPDATE Usuarios SET intentos_fallidos = ?, bloqueado = ? WHERE id_usuario = ?";
                     try (PreparedStatement updateStmt = conn.prepareStatement(updateSql)) {
                         updateStmt.setInt(1, intentosFallidos);

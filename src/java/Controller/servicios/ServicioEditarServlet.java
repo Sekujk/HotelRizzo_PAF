@@ -15,7 +15,8 @@ import java.sql.Connection;
 public class ServicioEditarServlet extends HttpServlet {
 
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
         int id = Integer.parseInt(request.getParameter("id"));
 
         try (Connection conn = Conexion.getConnection()) {
@@ -36,21 +37,29 @@ public class ServicioEditarServlet extends HttpServlet {
     }
 
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        int idServicio = Integer.parseInt(request.getParameter("id"));
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        try {
+            int idServicio = Integer.parseInt(request.getParameter("id"));
+            String nombre = request.getParameter("nombre");
+            String descripcion = request.getParameter("descripcion");
+            double precioUnitario = Double.parseDouble(request.getParameter("precio"));
 
-        try (Connection conn = Conexion.getConnection()) {
-            ServicioDAO servicioDAO = new ServicioDAO(conn);
-            boolean eliminado = servicioDAO.eliminar(idServicio);
+            ServicioDTO servicio = new ServicioDTO();
+            servicio.setIdServicio(idServicio);
+            servicio.setNombre(nombre);
+            servicio.setDescripcion(descripcion);
+            servicio.setPrecioUnitario(precioUnitario);
 
-            if (eliminado) {
-                response.sendRedirect("servicio?mensaje=eliminado");
-            } else {
-                response.sendRedirect("servicio?mensaje=error_eliminar");
+            try (Connection conn = Conexion.getConnection()) {
+                ServicioDAO servicioDAO = new ServicioDAO(conn);
+                servicioDAO.actualizar(servicio);
+                response.sendRedirect("servicio?mensaje=actualizado");
             }
+
         } catch (Exception e) {
             e.printStackTrace();
-            response.sendRedirect("servicio?mensaje=error_exception");
+            response.sendRedirect("servicio?mensaje=error_actualizar");
         }
     }
 }

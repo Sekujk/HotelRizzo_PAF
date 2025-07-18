@@ -1,0 +1,216 @@
+:root {
+  /* Colores principales */
+  --primary: #2a5298;
+  --primary-light: #667eea;
+  --error: #dc3545;
+  --warning: #ffc107;
+  --critical: #dc3545;
+  
+  /* Escala de grises */
+  --text: #2d3748;
+  --text-light: #718096;
+  --border: #e2e8f0;
+  --bg: #f8fafc;
+  --white: #ffffff;
+  
+  /* Estilos */
+  --radius: 8px;
+  --transition: all 0.2s ease;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  background-color: var(--bg);
+  color: var(--text);
+  line-height: 1.5;
+  min-height: 100vh;
+}
+
+.login-container {
+  display: flex;
+  min-height: 100vh;
+}
+
+/* Tarjeta de Login */
+.login-card {
+  flex: 1;
+  max-width: 480px;
+  padding: 2.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: var(--white);
+}
+
+.login-logo {
+  width: 140px;
+  height: auto;
+  margin: 0 auto 1.5rem;
+  display: block;
+}
+
+.login-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  text-align: center;
+  margin-bottom: 0.5rem;
+  color: var(--primary);
+}
+
+.login-subtitle {
+  color: var(--text-light);
+  text-align: center;
+  font-size: 0.95rem;
+  margin-bottom: 2rem;
+}
+
+/* Formulario */
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.input-group label {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--text);
+}
+
+.input-group input {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  font-size: 1rem;
+  transition: var(--transition);
+}
+
+.input-group input:focus {
+  outline: none;
+  border-color: var(--primary-light);
+  box-shadow: 0 0 0 2px rgba(102, 126, 234, 0.1);
+}
+
+/* Botón */
+.login-btn {
+  width: 100%;
+  padding: 0.75rem;
+  background-color: var(--primary);
+  color: var(--white);
+  border: none;
+  border-radius: var(--radius);
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: var(--transition);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.login-btn:hover {
+  background-color: var(--primary-light);
+}
+
+.login-btn svg {
+  transition: transform 0.2s ease;
+}
+
+.login-btn:hover svg {
+  transform: translateX(3px);
+}
+
+/* Mensajes de Error */
+.error-message {
+  font-size: 0.875rem;
+  padding: 0.75rem;
+  border-radius: var(--radius);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: rgba(220, 53, 69, 0.05);
+  color: var(--error);
+}
+
+.error-message.warning {
+  background-color: rgba(255, 193, 7, 0.05);
+  color: var(--warning);
+}
+
+.error-message.critical {
+  background-color: rgba(220, 53, 69, 0.05);
+  color: var(--critical);
+}
+
+/* Enlace Volver */
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 1.5rem;
+  color: var(--text-light);
+  font-size: 0.875rem;
+  text-decoration: none;
+  transition: var(--transition);
+}
+
+.back-link:hover {
+  color: var(--primary);
+}
+
+.back-link svg {
+  transition: transform 0.2s ease;
+}
+
+.back-link:hover svg {
+  transform: translateX(-3px);
+}
+
+/* Fondo */
+.login-background {
+  flex: 1;
+  display: none;
+  background-color: #e2e8f0;
+}
+
+.login-background img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+/* Responsive */
+@media (min-width: 992px) {
+  .login-card {
+    padding: 3rem;
+  }
+  
+  .login-background {
+    display: block;
+  }
+}
+
+@media (max-width: 480px) {
+  .login-card {
+    padding: 2rem 1.5rem;
+  }
+  
+  .login-title {
+    font-size: 1.3rem;
+  }
+}

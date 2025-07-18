@@ -14,6 +14,78 @@
                     <file>${file.reference.sqljdbc4.jar}</file>
                     <path-in-war>WEB-INF/lib</path-in-war>
                 </library>
+                <library dirs="200">
+                    <file>${file.reference.barcodes-9.2.0.jar}</file>
+                    <path-in-war>WEB-INF/lib</path-in-war>
+                </library>
+                <library dirs="200">
+                    <file>${file.reference.bouncy-castle-adapter-9.2.0.jar}</file>
+                    <path-in-war>WEB-INF/lib</path-in-war>
+                </library>
+                <library dirs="200">
+                    <file>${file.reference.bouncy-castle-connector-9.2.0.jar}</file>
+                    <path-in-war>WEB-INF/lib</path-in-war>
+                </library>
+                <library dirs="200">
+                    <file>${file.reference.bouncy-castle-fips-adapter-9.2.0.jar}</file>
+                    <path-in-war>WEB-INF/lib</path-in-war>
+                </library>
+                <library dirs="200">
+                    <file>${file.reference.commons-9.2.0.jar}</file>
+                    <path-in-war>WEB-INF/lib</path-in-war>
+                </library>
+                <library dirs="200">
+                    <file>${file.reference.font-asian-9.2.0.jar}</file>
+                    <path-in-war>WEB-INF/lib</path-in-war>
+                </library>
+                <library dirs="200">
+                    <file>${file.reference.forms-9.2.0.jar}</file>
+                    <path-in-war>WEB-INF/lib</path-in-war>
+                </library>
+                <library dirs="200">
+                    <file>${file.reference.hyph-9.2.0.jar}</file>
+                    <path-in-war>WEB-INF/lib</path-in-war>
+                </library>
+                <library dirs="200">
+                    <file>${file.reference.io-9.2.0.jar}</file>
+                    <path-in-war>WEB-INF/lib</path-in-war>
+                </library>
+                <library dirs="200">
+                    <file>${file.reference.kernel-9.2.0.jar}</file>
+                    <path-in-war>WEB-INF/lib</path-in-war>
+                </library>
+                <library dirs="200">
+                    <file>${file.reference.layout-9.2.0.jar}</file>
+                    <path-in-war>WEB-INF/lib</path-in-war>
+                </library>
+                <library dirs="200">
+                    <file>${file.reference.pdfa-9.2.0.jar}</file>
+                    <path-in-war>WEB-INF/lib</path-in-war>
+                </library>
+                <library dirs="200">
+                    <file>${file.reference.pdftest-9.2.0.jar}</file>
+                    <path-in-war>WEB-INF/lib</path-in-war>
+                </library>
+                <library dirs="200">
+                    <file>${file.reference.pdfua-9.2.0.jar}</file>
+                    <path-in-war>WEB-INF/lib</path-in-war>
+                </library>
+                <library dirs="200">
+                    <file>${file.reference.sign-9.2.0.jar}</file>
+                    <path-in-war>WEB-INF/lib</path-in-war>
+                </library>
+                <library dirs="200">
+                    <file>${file.reference.styled-xml-parser-9.2.0.jar}</file>
+                    <path-in-war>WEB-INF/lib</path-in-war>
+                </library>
+                <library dirs="200">
+                    <file>${file.reference.slf4j-api-2.0.9.jar}</file>
+                    <path-in-war>WEB-INF/lib</path-in-war>
+                </library>
+                <library dirs="200">
+                    <file>${file.reference.slf4j-simple-2.0.9.jar}</file>
+                    <path-in-war>WEB-INF/lib</path-in-war>
+                </library>
             </web-module-libraries>
             <web-module-additional-libraries>
                 <library dirs="200">
@@ -22,6 +94,78 @@
                 </library>
                 <library dirs="200">
                     <file>${file.reference.jbcrypt-0.4.jar}</file>
+                </library>
+                <library dirs="200">
+                    <file>${file.reference.barcodes-9.2.0.jar}</file>
+                    <path-in-war>/</path-in-war>
+                </library>
+                <library dirs="200">
+                    <file>${file.reference.bouncy-castle-adapter-9.2.0.jar}</file>
+                    <path-in-war>/</path-in-war>
+                </library>
+                <library dirs="200">
+                    <file>${file.reference.bouncy-castle-connector-9.2.0.jar}</file>
+                    <path-in-war>/</path-in-war>
+                </library>
+                <library dirs="200">
+                    <file>${file.reference.bouncy-castle-fips-adapter-9.2.0.jar}</file>
+                    <path-in-war>/</path-in-war>
+                </library>
+                <library dirs="200">
+                    <file>${file.reference.commons-9.2.0.jar}</file>
+                    <path-in-war>/</path-in-war>
+                </library>
+                <library dirs="200">
+                    <file>${file.reference.font-asian-9.2.0.jar}</file>
+                    <path-in-war>/</path-in-war>
+                </library>
+                <library dirs="200">
+                    <file>${file.reference.forms-9.2.0.jar}</file>
+                    <path-in-war>/</path-in-war>
+                </library>
+                <library dirs="200">
+                    <file>${file.reference.hyph-9.2.0.jar}</file>
+                    <path-in-war>/</path-in-war>
+                </library>
+                <library dirs="200">
+                    <file>${file.reference.io-9.2.0.jar}</file>
+                    <path-in-war>/</path-in-war>
+                </library>
+                <library dirs="200">
+                    <file>${file.reference.kernel-9.2.0.jar}</file>
+                    <path-in-war>/</path-in-war>
+                </library>
+                <library dirs="200">
+                    <file>${file.reference.layout-9.2.0.jar}</file>
+                    <path-in-war>/</path-in-war>
+                </library>
+                <library dirs="200">
+                    <file>${file.reference.pdfa-9.2.0.jar}</file>
+                    <path-in-war>/</path-in-war>
+                </library>
+                <library dirs="200">
+                    <file>${file.reference.pdftest-9.2.0.jar}</file>
+                    <path-in-war>/</path-in-war>
+                </library>
+                <library dirs="200">
+                    <file>${file.reference.pdfua-9.2.0.jar}</file>
+                    <path-in-war>/</path-in-war>
+                </library>
+                <library dirs="200">
+                    <file>${file.reference.sign-9.2.0.jar}</file>
+                    <path-in-war>/</path-in-war>
+                </library>
+                <library dirs="200">
+                    <file>${file.reference.styled-xml-parser-9.2.0.jar}</file>
+                    <path-in-war>/</path-in-war>
+                </library>
+                <library dirs="200">
+                    <file>${file.reference.slf4j-api-2.0.9.jar}</file>
+                    <path-in-war>/</path-in-war>
+                </library>
+                <library dirs="200">
+                    <file>${file.reference.slf4j-simple-2.0.9.jar}</file>
+                    <path-in-war>/</path-in-war>
                 </library>
             </web-module-additional-libraries>
             <source-roots>

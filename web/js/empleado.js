@@ -1,12 +1,16 @@
-document.addEventListener("DOMContentLoaded", () => {
+window.addEventListener("DOMContentLoaded", () => {
     const input = document.getElementById("buscador-empleado");
-    const filas = document.querySelectorAll(".tabla-empleados tbody tr");
+    const tabla = document.querySelector(".data-table");
+
+    if (!input || !tabla) return;
+
+    const filas = tabla.querySelectorAll("tbody tr");
 
     input.addEventListener("input", () => {
-        const texto = input.value.toLowerCase();
+        const texto = input.value.trim().toLowerCase();
 
         filas.forEach(fila => {
-            const contenido = fila.textContent.toLowerCase();
+            const contenido = fila.textContent.trim().toLowerCase();
             fila.style.display = contenido.includes(texto) ? "" : "none";
         });
     });

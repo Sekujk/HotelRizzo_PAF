@@ -1,0 +1,265 @@
+/* Estilos específicos para la gestión de tipos de habitación */
+
+/* Contenedor principal */
+.card-container {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    padding: 2rem;
+    margin-top: 1.5rem;
+}
+
+/* Grid de estadísticas */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+/* Tarjetas de estadísticas */
+.stat-card {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    transition: all 0.3s ease;
+}
+
+.stat-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+}
+
+/* Iconos de estadísticas */
+.stat-icon {
+    width: 60px;
+    height: 60px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    color: white;
+}
+
+.stat-card.primary .stat-icon { 
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); 
+}
+
+.stat-card.success .stat-icon { 
+    background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%); 
+}
+
+/* Contenido de estadísticas */
+.stat-content h3 {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 0.2rem;
+}
+
+.stat-content p {
+    color: #666;
+    font-size: 0.9rem;
+}
+
+/* Barra de acciones */
+.card-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+/* Caja de búsqueda */
+.search-box {
+    position: relative;
+    flex: 1;
+    min-width: 250px;
+}
+
+.search-box i {
+    position: absolute;
+    left: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #666;
+}
+
+.search-box input {
+    width: 100%;
+    padding: 0.8rem 1rem 0.8rem 2.5rem;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.search-box input:focus {
+    outline: none;
+    border-color: #2a5298;
+    box-shadow: 0 0 0 3px rgba(42, 82, 152, 0.1);
+}
+
+/* Tabla de tipos */
+.table-responsive {
+    overflow-x: auto;
+    margin-top: 1.5rem;
+}
+
+.data-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.95rem;
+}
+
+.data-table th {
+    background-color: #f8f9fa;
+    padding: 1rem;
+    text-align: left;
+    font-weight: 600;
+    color: #444;
+    border-bottom: 2px solid #eee;
+}
+
+.data-table td {
+    padding: 1rem;
+    border-bottom: 1px solid #eee;
+    color: #333;
+    vertical-align: middle;
+}
+
+.data-table tr:hover {
+    background-color: #f8f9fa;
+}
+
+/* Estilos específicos para columnas */
+.data-table td:nth-child(1) { /* Nombre */
+    font-weight: 500;
+    color: #2a5298;
+}
+
+.data-table td:nth-child(3) { /* Precio */
+    font-weight: 600;
+    color: #28a745;
+}
+
+.data-table td:nth-child(4) { /* Capacidad */
+    font-weight: 500;
+}
+
+/* Badges de capacidad */
+.capacity-badge {
+    display: inline-block;
+    padding: 0.3rem 0.8rem;
+    border-radius: 20px;
+    background-color: #e6f7ff;
+    color: #2a5298;
+    font-size: 0.85rem;
+    font-weight: 500;
+}
+
+/* Celdas de acción */
+.action-cell {
+    display: flex;
+    gap: 0.5rem;
+}
+
+/* Botones de acción */
+.btn-action {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    color: white;
+    font-size: 0.9rem;
+}
+
+.btn-action.detail {
+    background-color: #17a2b8;
+}
+
+.btn-action.edit {
+    background-color: #2a5298;
+}
+
+.btn-action.deactivate {
+    background-color: #dc3545;
+}
+
+.btn-action.activate {
+    background-color: #28a745;
+}
+
+.btn-action:hover {
+    transform: scale(1.1);
+    opacity: 0.9;
+}
+
+/* Formularios inline */
+.inline-form {
+    display: inline;
+    margin: 0;
+    padding: 0;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .card-actions {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .search-box {
+        width: 100%;
+        margin-bottom: 1rem;
+    }
+    
+    .action-buttons {
+        width: 100%;
+    }
+    
+    .btn {
+        width: 100%;
+        justify-content: center;
+    }
+    
+    .data-table th, 
+    .data-table td {
+        padding: 0.75rem 0.5rem;
+        font-size: 0.85rem;
+    }
+    
+    .action-cell {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .card-container {
+        padding: 1.5rem 1rem;
+    }
+    
+    .stats-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .data-table td:nth-child(2) { /* Descripción */
+        max-width: 150px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+}

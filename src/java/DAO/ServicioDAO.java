@@ -63,13 +63,12 @@ public class ServicioDAO {
     }
 
     public void actualizar(ServicioDTO servicio) throws SQLException {
-        String sql = "UPDATE Servicios SET nombre = ?, descripcion = ?, precio_unitario = ?, activo = ? WHERE id_servicio = ?";
+        String sql = "UPDATE Servicios SET nombre = ?, descripcion = ?, precio_unitario = ? WHERE id_servicio = ?";
         try (PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setString(1, servicio.getNombre());
             stmt.setString(2, servicio.getDescripcion());
             stmt.setDouble(3, servicio.getPrecioUnitario());
-            stmt.setBoolean(4, servicio.isActivo());
-            stmt.setInt(5, servicio.getIdServicio());
+            stmt.setInt(4, servicio.getIdServicio());
             stmt.executeUpdate();
         }
     }
@@ -101,4 +100,14 @@ public class ServicioDAO {
         }
         return 0;
     }
+    
+    public boolean cambiarEstado(int idServicio, boolean activo) throws SQLException {
+    String sql = "UPDATE Servicios SET activo = ? WHERE id_servicio = ?";
+    try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+        stmt.setBoolean(1, activo);
+        stmt.setInt(2, idServicio);
+        return stmt.executeUpdate() > 0;
+    }
+}
+
 }

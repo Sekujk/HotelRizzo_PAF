@@ -14,8 +14,8 @@ public class EmpleadoDAO {
 
     public List<EmpleadoDTO> listarEmpleados() throws SQLException {
         String sql = "SELECT e.*, p.*, r.nombre_rol FROM Empleados e "
-                + "INNER JOIN Personas p ON e.id_empleado = p.id_persona "
-                + "INNER JOIN Roles r ON e.id_rol = r.id_rol WHERE p.activo = 1";
+            + "INNER JOIN Personas p ON e.id_empleado = p.id_persona "
+            + "INNER JOIN Roles r ON e.id_rol = r.id_rol"; 
         List<EmpleadoDTO> lista = new ArrayList<>();
         try (PreparedStatement stmt = conn.prepareStatement(sql); ResultSet rs = stmt.executeQuery()) {
             while (rs.next()) {
@@ -126,6 +126,15 @@ public class EmpleadoDAO {
     String sql = "DELETE FROM Empleados WHERE id_empleado = ?";
     try (PreparedStatement stmt = conn.prepareStatement(sql)) {
         stmt.setInt(1, idEmpleado);
+        return stmt.executeUpdate() > 0;
+    }
+}
+    
+    public boolean cambiarEstadoActivo(int idEmpleado, boolean estado) throws SQLException {
+    String sql = "UPDATE Empleados SET activo = ? WHERE id_empleado = ?";
+    try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+        stmt.setBoolean(1, estado);
+        stmt.setInt(2, idEmpleado);
         return stmt.executeUpdate() > 0;
     }
 }

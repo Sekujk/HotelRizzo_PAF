@@ -1,0 +1,126 @@
+/* Estilos específicos para el formulario de creación de habitaciones */
+
+.form-container {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    padding: 2rem;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.form-header {
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.form-header h1 {
+    font-size: 1.8rem;
+    color: #2a5298;
+    margin-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.8rem;
+}
+
+.form-subtitle {
+    color: #666;
+    font-size: 1rem;
+    margin-bottom: 0;
+}
+
+.habitacion-form {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+}
+
+.form-group {
+    margin-bottom: 1rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    color: #444;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 0.8rem 1rem;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: #667eea;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.2);
+}
+
+.form-group textarea {
+    min-height: 100px;
+    resize: vertical;
+}
+
+.checkbox-group {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.checkbox-group input {
+    width: auto;
+}
+
+.checkbox-group label {
+    margin-bottom: 0;
+}
+
+.form-actions {
+    grid-column: 1 / -1;
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+    margin-top: 1rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid #eee;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .form-container {
+        padding: 1.5rem;
+    }
+    
+    .habitacion-form {
+        grid-template-columns: 1fr;
+    }
+    
+    .form-actions {
+        flex-direction: column;
+    }
+    
+    .form-actions .btn {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .form-container {
+        padding: 1rem;
+    }
+    
+    .form-header h1 {
+        font-size: 1.5rem;
+    }
+}
